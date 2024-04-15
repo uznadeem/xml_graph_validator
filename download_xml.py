@@ -1,16 +1,14 @@
 import requests
 import os
-import sys
 
 DOWNLOAD_DIR = "downloaded_xml_files"
 BASE_URL = "https://raw.githubusercontent.com/uznadeem/xml_graph_validator/main/"
-DEFAULT_XML = "sample.xml"
 
 def validate_filename(filename):
     if not filename.endswith(".xml"):
         raise ValueError("Filename must have a valid extension (.xml).")
 
-def download_xml_file(filename=DEFAULT_XML):
+def download_xml_file(filename):
     try:
         validate_filename(filename)
 
@@ -32,10 +30,3 @@ def download_xml_file(filename=DEFAULT_XML):
         print(f"Invalid filename: {e}")
     except Exception as e:
         print(f"Unexpected error: {e}")
-
-if __name__ == "__main__":
-    filename = DEFAULT_XML
-    if len(sys.argv) > 1:
-        filename = sys.argv[1]
-
-    download_xml_file(filename)
