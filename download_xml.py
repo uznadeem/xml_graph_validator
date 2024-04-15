@@ -30,3 +30,5 @@ def download_xml_file(filename):
         print(f"Invalid filename: {e}")
     except Exception as e:
         print(f"Unexpected error: {e}")
+
+    return response.text
