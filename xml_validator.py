@@ -10,6 +10,8 @@ def validate_xml(xml_data):
         validate_node_structure(root, node_ids)
         validate_edge_structure(root, node_ids)
 
+        return 'XML is Valid'
+
     except ET.ParseError as e:
         raise ValueError("Invalid XML structure: " + str(e))
 
