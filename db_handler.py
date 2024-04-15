@@ -66,6 +66,39 @@ def create_tables():
     conn.commit()
     conn.close()
 
+def dijkstra(graph, start, end):
+    queue = [(0, start, [])]
+    seen = set()
+
+    while queue:
+        (cost, node, path) = heapq.heappop(queue)
+        if node not in seen:
+            seen.add(node)
+            path = path + [node]
+
+            if node == end:
+                return path
+
+            for neighbor, weight in graph.get(node, {}).items():
+                if neighbor not in seen:
+                    heapq.heappush(queue, (cost + weight, neighbor, path))
+
+    return False
+
+def find_all_paths(graph, start, end, path=[]):
+    path = path + [start]
+    if start == end:
+        return [path]
+    if start not in graph:
+        return []
+    paths = []
+    for node in graph[start]:
+        if node not in path:
+            newpaths = find_all_paths(graph, node, end, path)
+            for newpath in newpaths:
+                paths.append(newpath)
+    return paths
+
 def construct_graph_from_db(cursor, graph_id):
     graph = {}
     query = """
@@ -82,6 +115,31 @@ def construct_graph_from_db(cursor, graph_id):
         else:
             graph[from_node] = {to_node: cost}
     return graph
+
+def process_queries(input_json):
+    conn = connect_to_db()
+    cursor = conn.cursor()
+
+    answers = []
+    for query in input_json["queries"]:
+        if "paths" in query:
+            graph_id = query["paths"]["graph_id"]
+            start, end = query["paths"]["start"], query["paths"]["end"]
+            graph = construct_graph_from_db(cursor, graph_id)
+            all_paths = find_all_paths(graph, start, end)
+            answers.append({"paths": {"from": start, "to": end, "paths": all_paths}})
+
+        elif "cheapest" in query:
+            graph_id = query["cheapest"]["graph_id"]
+            start, end = query["cheapest"]["start"], query["cheapest"]["end"]
+            graph = construct_graph_from_db(cursor, graph_id)
+            cheapest_path = dijkstra(graph, start, end)
+            answers.append({"cheapest": {"from": start, "to": end, "path": cheapest_path}})
+
+    cursor.close()
+    conn.close()
+
+    return json.dumps({"answers": answers})
 
 def find_cycles_in_graph(graph_id):
     try:
