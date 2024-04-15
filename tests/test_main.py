@@ -5,8 +5,6 @@ project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(project_root)
 from db_handler import clean_data
 
-clean_data()
-
 def test_main_script_output_default():
     clean_data()
     result = subprocess.run(['python3', 'main.py'], stdout=subprocess.PIPE, text=True)
