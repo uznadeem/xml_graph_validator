@@ -17,10 +17,10 @@ def download_xml_file(filename):
         response.raise_for_status()
 
         os.makedirs(DOWNLOAD_DIR, exist_ok=True)
-        with open(os.path.join(DOWNLOAD_DIR, filename), "w") as file:
+        with open(os.path.join(DOWNLOAD_DIR, filename.split('/')[-1]), "w") as file:
             file.write(response.text)
 
-        print(f"XML file downloaded successfully and saved as {filename} in the '{DOWNLOAD_DIR}' directory.")
+        print(f"XML file downloaded successfully and saved in the '{DOWNLOAD_DIR}' directory.")
 
     except requests.exceptions.HTTPError as e:
         print(f"Download error: {e}")
@@ -31,4 +31,5 @@ def download_xml_file(filename):
     except Exception as e:
         print(f"Unexpected error: {e}")
 
-    return response.text
+    if response:
+        return response.text

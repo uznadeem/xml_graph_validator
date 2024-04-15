@@ -1,0 +1,15 @@
+<!-- Invalid Case 09: Edges is missing -->
+<graph>
+    <id>g09</id>
+    <name>The Graph Name</name>
+    <nodes>
+        <node>
+            <id>a</id>
+            <name>A name</name>
+        </node>
+        <node>
+            <id>e</id>
+            <name>E name</name>
+        </node>
+    </nodes>
+</graph>

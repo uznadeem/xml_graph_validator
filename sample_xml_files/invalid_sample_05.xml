@@ -1,0 +1,22 @@
+<!-- Invalid Case 05: Nodes tag is present but there are no nodes in it -->
+<graph>
+    <id>g05</id>
+    <name>The Graph Name</name>
+    <nodes>
+
+    </nodes>
+    <edges>
+        <node>
+            <id>e1</id>
+            <from>a</from>
+            <to>e</to>
+            <cost>42</cost>
+        </node>
+        <node>
+            <id>e5</id>
+            <from>a</from>
+            <to>a</to>
+            <cost>0.42</cost>
+        </node>
+    </edges>
+</graph>

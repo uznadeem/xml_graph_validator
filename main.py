@@ -11,8 +11,9 @@ if len(sys.argv) > 1:
 
 xml_data = download_xml.download_xml_file(filename)
 
-try:
-    xml_validator.validate_xml(xml_data)
-    print('XML is Valid')
-except Exception as e:
-    print(f"XML is Invalid '{e}'")
+if xml_data:
+    try:
+        xml_validator.validate_xml(xml_data)
+        print('XML is Valid')
+    except Exception as e:
+        print(f"XML is Invalid '{e}'")

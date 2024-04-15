@@ -1,0 +1,27 @@
+<!-- Invalid Case 13: Edge does not lead to any node -->
+<graph>
+    <id>g13</id>
+    <name>The Graph Name</name>
+    <nodes>
+        <node>
+            <id>a</id>
+            <name>A name</name>
+        </node>
+        <node>
+            <id>e</id>
+            <name>E name</name>
+        </node>
+    </nodes>
+    <edges>
+        <node>
+            <id>e1</id>
+            <from>a</from>
+            <cost>42</cost>
+        </node>
+        <node>
+            <id>e5</id>
+            <from>a</from>
+            <cost>0.42</cost>
+        </node>
+    </edges>
+</graph>

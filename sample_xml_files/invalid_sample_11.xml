@@ -1,0 +1,27 @@
+<!-- Invalid Case 11: Edge does not has from tag in nodes -->
+<graph>
+    <id>g11</id>
+    <name>The Graph Name</name>
+    <nodes>
+        <node>
+            <id>a</id>
+            <name>A name</name>
+        </node>
+        <node>
+            <id>e</id>
+            <name>E name</name>
+        </node>
+    </nodes>
+    <edges>
+        <node>
+            <id>e1</id>
+            <to>e</to>
+            <cost>42</cost>
+        </node>
+        <node>
+            <id>e5</id>
+            <to>a</to>
+            <cost>0.42</cost>
+        </node>
+    </edges>
+</graph>

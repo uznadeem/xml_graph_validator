@@ -1,0 +1,28 @@
+<!-- Assumption  -->
+<!-- Invalid Case 14: It was not mentioned but assuming that edge ID is required  -->
+<graph>
+    <id>g14</id>
+    <name>The Graph Name</name>
+    <nodes>
+        <node>
+            <id>a</id>
+            <name>A name</name>
+        </node>
+        <node>
+            <id>e</id>
+            <name>E name</name>
+        </node>
+    </nodes>
+    <edges>
+        <node>
+            <from>a</from>
+            <to>e</to>
+            <cost>42</cost>
+        </node>
+        <node>
+            <from>a</from>
+            <to>a</to>
+            <cost>0.42</cost>
+        </node>
+    </edges>
+</graph>
